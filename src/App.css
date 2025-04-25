@@ -3,7 +3,7 @@
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
+  animation: App-logo-spin infinite 20s linear, rainbow-flash 1s infinite;
   height: 80px;
 }
 
@@ -28,5 +28,13 @@
   }
   to {
     transform: rotate(360deg);
+  }
+
+  @keyframes rainbow-flash {
+  0%   { filter: hue-rotate(0deg); }
+  25%  { filter: hue-rotate(90deg); }
+  50%  { filter: hue-rotate(180deg); }
+  75%  { filter: hue-rotate(270deg); }
+  100% { filter: hue-rotate(360deg); }
   }
 }
