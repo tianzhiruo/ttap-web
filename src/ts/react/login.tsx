@@ -135,13 +135,6 @@ export class Login extends React.Component<
           </DialogContent>
           <DialogActions>
           <Button
-<<<<<<< HEAD
-              color="primary" 
-              variant="contained" 
-=======
-              color="primary" // changed to red for danger/cancel indication
-              variant="contained" // optional for a bordered style; use "contained" for solid red
->>>>>>> deb42a7ed08839d281321981d362cd50dfa52930
               onClick={() =>
                 this.setState({ openAddSlotManuallyDialog: false })
               }
