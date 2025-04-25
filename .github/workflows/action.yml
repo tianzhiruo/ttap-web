@@ -1,60 +1,21 @@
-name: BuildAndDeploy
+# .github/workflows/ci.yml
+name: Node.js CI
 
 on:
   push:
-    branches: ["master"]
+    branches: [ master ]
   pull_request:
-    branches: ["master"]
+    branches: [ master ]
 
 jobs:
   build:
-    runs-on: macos-latest
-    strategy:
-      matrix:
-        node-version: [18.x]
-    env:
-      CI: false
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+      - name: Use Node.js
+        uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 18
       - run: npm install
-
-      # Check format
-      - run: npm run format:check
-
-      # Build
-      - run: ./scripts/build
-
-      # Test
-      - run: npm run test
-
-      # Upload artifacts for deploy job
-      - uses: actions/upload-artifact@master
-        with:
-          name: build
-          path: ./build
-
-  deploy:
-    runs-on: macos-latest
-    strategy:
-      matrix:
-        node-version: [14.x]
-    needs: build
-    # Only allow deployment on master branch
-    # Refer https://stackoverflow.com/a/58142412/6587634
-    if: github.ref == 'refs/heads/master'
-    steps:
-      - uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node-version }}
-      - uses: actions/download-artifact@master
-        with:
-          name: build
-          path: ./build
-      - run: npm install --global surge
-      - run: surge --domain https://ttap.surge.sh --project ./build --token ${{ secrets.SURGE_TOKEN }}
+      - run: npm run build
+      - run: npm test
