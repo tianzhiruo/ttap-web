@@ -90,7 +90,7 @@ export class App extends React.Component<{}, IAppState> {
             >
               <Toolbar>
                 <Button onClick={() => window.history.back()}>
-                  <ArrowBack style={{ color: "white" }} />
+                  <ArrowBack style={{ color: "black" }} />
                 </Button>
                 {/* <GridIcon style={{ marginRight: "12px", color: "white" }}/> */}
                 <Typography style={{ flex: 1 }} variant="title" color="inherit">

@@ -31,7 +31,7 @@ export class GetStarted extends React.Component<{}, IGetStartedState> {
               onClick={this.handleClick}
             >
               <IconList style={iconStyle} />
-              Get started
+              Get started 
             </Button>
           </StackPanel>
         </VerticalAlign>
